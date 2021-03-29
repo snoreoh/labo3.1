@@ -11,28 +11,28 @@
 с помощью которого можно будет собирать статическую библиотеку *formatter*.
 ```sh
 $ cat > CMakeLists.txt <<EOF
-> cmake_minimum_required(VERSION 3.4)
-> project(formatter)
+> cmake_minimum_required(VERSION 3.4) // устанавливаем минимальнуую версию cmakе
+> project(formatter) // называем проект
 > EOF
 
 
 $ cat >> CMakeLists.txt << EOF
-> set(CMAKE_CXX_STANDART_ 11)
-> set(CMAKE_CXX_STANDART_REQUIRED ON)
+> set(CMAKE_CXX_STANDART_ 11) 
+> set(CMAKE_CXX_STANDART_REQUIRED ON) // устанавливаем стандарты языка
 > EOF
 
 $ cat >> formatter_lib/CMakeLists.txt << EOF
-> add_library (formatter STATIC \${CMAKE_CURRENT_SOURCE_DIR}/formatter.cpp)
+> add_library(formatter STATIC \${CMAKE_CURRENT_SOURCE_DIR}/formatter.cpp) // сборка статической библиотеки 
 > EOF
 
 
 $ cat >> formatter_lib/CMakeLists.txt << EOF
-> include_directories(\${CMAKE_CURRENT_SOURCE_DIR})
+> include_directories(\${CMAKE_CURRENT_SOURCE_DIR}) // подключение директории с заголовочными файлами
 > EOF
 
-$ cmake -H. -B_bulid
+$ cmake -H. -B_bulid // создаем папку для сбоки
 
-$ cmake --build _build
+$ cmake --build _build // производим сборку
 
 
 ```
@@ -55,7 +55,7 @@ $ cat >> CMakeLists.txt << EOF
 $ cat > CMakeLists.txt  << EOF
 > set(CMAKE_CXX_STANDARD 20)
 > set(CMAKE_CXX_STANDARD_REQUIRED ON)
->set(CMAKE_CURRENT_SOURCE_DIR ~/snoreoh/workspace/projects/lab03.1)
+>set(CMAKE_CURRENT_SOURCE_DIR ~/snoreoh/workspace/projects/lab03.1) // меняем переменную CMAKE_CURRENT_SOURCE_DIR
 > EOF
 
 
@@ -69,7 +69,7 @@ $ cat >> CMakeLists.txt << EOF
 > EOF
 
 $ cat >> CMakeLists.txt << EOF
->target_link_libraries(formatter_ex formatter)
+>target_link_libraries(formatter_ex formatter) // линкуем библиотеки
 >EOF
 
 $ cmake -H. -B_bulid
@@ -95,12 +95,12 @@ $ cat >> CMakeLists.txt << EOF
  > set(CMAKE_CXX_STANDART_REQUIRED ON)
  > set(CMAKE_CURRENT_SOURCE_DIR /home/snoreoh/snoreoh/workspace/projects/lab03.1/lab03)
 
- > add_executable(hello_world ${CMAKE_CURRENT_SOURCE_DIR}/hello_world_application/hello_world.cpp)
+ > add_executable(hello_world ${CMAKE_CURRENT_SOURCE_DIR}/hello_world_application/hello_world.cpp) // добавляем исполняемый файл
 
  > include_directories(${CMAKE_CURRENT_SOURCE_DIR}/formatter_lib)
  > include_directories(${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib)
 
- > find_library(formatter_ex NAMES libformatter_ex.a PATHS ${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib/_build)
+ > find_library(formatter_ex NAMES libformatter_ex.a PATHS ${CMAKE_CURRENT_SOURCE_DIR}/formatter_ex_lib/_build) // ищем/указыываем на необходимые нам библиотеки
  > find_library(formatter NAMES libformatter.a PATHS ${CMAKE_CURRENT_SOURCE_DIR}/formatter_lib/_build)
 
  > target_link_libraries(hello_world ${formatter_ex} ${formatter})
@@ -120,10 +120,11 @@ hello, world!
 * For *solver*
 
 ```sh
-$ cd solver_lib
+$ cd solver_lib   // все шаги аналогичны предыдущим пунктам
 $ cat >> CMakeLists.txt << EOF
  > cmake_minimum_required(VERSION 3.4)
  > project(slover_lib)
+ 
  > set(CMAKE_CXX_STANDART 11)
  > set(CMAKE_CXX_STANDART_REQUIRED ON)
  > add_library(solver_lib STATIC ${CMAKE_CURRENT_SOURCE_DIR}/solver.cpp)
