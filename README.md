@@ -146,7 +146,7 @@ $ ls _build/libsolver.a
 
 Затем CMakeLists:
 $ cd solver_application
-$ cat >> CMakeLists.txt >> EOF
+$ cat >> CMakeLists.txt << EOF
 > cmake_minimum_required(VERSION 2.8)
 > project(solver)
 > add_executable(solver equation.cpp)
